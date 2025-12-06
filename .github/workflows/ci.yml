@@ -1,0 +1,53 @@
+name: Apex CI/CD Pipeline (Node.js/Expo)
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20.x
+
+jobs:
+  validate_codebase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies (npm ci)
+        run: npm ci
+
+      - name: 🧹 Linting and Formatting Check (Biome/ESLint)
+        # Apex standard favors Biome for speed and quality, ensuring code hygiene.
+        # Running 'check' command which includes linting and formatting verification.
+        run: npm run lint
+
+      - name: 🧪 Run Unit and Integration Tests
+        # Executes Jest/Vitest tests with coverage generation.
+        run: npm run test -- --coverage
+
+      - name: Check Expo Configuration Integrity
+        # Verifies app.json and environment sanity before potential build steps.
+        run: npx expo doctor
+
+      - name: Upload Test Coverage to Codecov
+        # Required for centralized metrics and compliance badges.
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          verbose: true

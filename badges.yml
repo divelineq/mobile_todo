@@ -1,0 +1,45 @@
+# FILE: badges.yml
+# Description: Configuration for professional Shields.io badges used in documentation.
+# Standard: Apex Technical Authority (flat-square, high-contrast colors).
+
+repository_url: "https://github.com/chirag127/TaskPilot-CrossPlatform-ToDo-Mobile-App"
+workflow_name: "ci.yml"
+username: "chirag127"
+style: "flat-square"
+main_branch: "main"
+
+badges:
+  - name: "CI Build Status"
+    image_url: "https://img.shields.io/github/actions/workflow/status/chirag127/TaskPilot-CrossPlatform-ToDo-Mobile-App/ci.yml?branch=main&label=CI%20Build&style=${{ style }}"
+    target_url: "${{ repository_url }}/actions/workflows/${{ workflow_name }}"
+    markdown: "[![CI Build Status](${{ image_url }})](${{ target_url }})"
+
+  - name: "Code Coverage"
+    image_url: "https://img.shields.io/codecov/c/github/${{ username }}/TaskPilot-CrossPlatform-ToDo-Mobile-App?style=${{ style }}"
+    target_url: "https://codecov.io/gh/${{ username }}/TaskPilot-CrossPlatform-ToDo-Mobile-App"
+    markdown: "[![Code Coverage](${{ image_url }})](${{ target_url }})"
+
+  - name: "Framework: React Native"
+    image_url: "https://img.shields.io/badge/Framework-React%20Native-61DAFB?style=${{ style }}&logo=react&logoColor=white"
+    target_url: "https://reactnative.dev/"
+    markdown: "[![Framework: React Native](${{ image_url }})](${{ target_url }})"
+
+  - name: "Platform: Expo"
+    image_url: "https://img.shields.io/badge/Platform-Expo%20SDK-0000FF?style=${{ style }}&logo=expo&logoColor=white"
+    target_url: "https://expo.dev/"
+    markdown: "[![Platform: Expo](${{ image_url }})](${{ target_url }})"
+
+  - name: "Linter/Formatter: Biome"
+    image_url: "https://img.shields.io/badge/Linter/Formatter-Biome-3B82F6?style=${{ style }}&logo=biome&logoColor=white"
+    target_url: "https://biomejs.dev/"
+    markdown: "[![Linter/Formatter: Biome](${{ image_url }})](${{ target_url }})"
+
+  - name: "GitHub Stars"
+    image_url: "https://img.shields.io/github/stars/${{ username }}/TaskPilot-CrossPlatform-ToDo-Mobile-App?style=${{ style }}&label=Stars&color=yellow"
+    target_url: "${{ repository_url }}/stargazers"
+    markdown: "[![GitHub Stars](${{ image_url }})](${{ target_url }})"
+
+  - name: "License"
+    image_url: "https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=${{ style }}"
+    target_url: "https://creativecommons.org/licenses/by-nc/4.0/"
+    markdown: "[![License: CC BY-NC 4.0](${{ image_url }})](${{ target_url }})]"
